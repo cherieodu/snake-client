@@ -9,8 +9,8 @@ const connect = function () {
   conn.on('connect', () => {
     console.log("Successfully connected to game server!");
     conn.write('Name: CIO');
-    conn.write('Move: up');
-    console.log('You moved up!');
+    // conn.write('Move: up');
+    // console.log('You moved up!');
 
     //  *** Commenting this out to make sure setupInput in play.js runs fine ***
     // let moveLeft = setInterval(() => {
@@ -32,4 +32,4 @@ const connect = function () {
   return conn;
 };
 
-module.exports = connect;
+module.exports = { connect };
