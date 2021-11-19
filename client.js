@@ -9,18 +9,7 @@ const connect = function () {
   conn.on('connect', () => {
     console.log("Successfully connected to game server!");
     conn.write('Name: CIO');
-    // conn.write('Move: up');
-    // console.log('You moved up!');
 
-    //  *** Commenting this out to make sure setupInput in play.js runs fine ***
-    // let moveLeft = setInterval(() => {
-    //   conn.write('Move: left');
-    // }, 100);
-
-    // setTimeout(() => {
-    //   clearInterval(moveLeft);
-    //   console.log("You've stopped moving");
-    // }, 12000);
   });
 
   // interpret incoming data as text
