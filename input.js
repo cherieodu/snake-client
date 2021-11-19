@@ -1,7 +1,8 @@
+const cannedMessage = ['Hello!', 'wyd?', 'hisss', 'Bye!'];
+const keyLogs = [];
 let connection;
-let keyLogs = [];
 let moveCount = 0;
-let cannedMessage = ['Hello!', 'wyd?', 'hisss', 'Bye!'];
+
 
 
 const handleUserInput = (key) => {
@@ -13,15 +14,18 @@ const handleUserInput = (key) => {
   const stopInterval = () => {
     if (keyLogs.length > 1) {
       let check = keyLogs[moveCount - 2];
-      if (check === 'w') {
-        clearInterval(movingUp);
-      } else if (check === 'a') {
-        clearInterval(movingLeft);
-      } else if (check === 's') {
-        clearInterval(movingDown);
-      } else if (check === 'd'){
-        clearInterval(movingRight);
+      if (check !== keyLogs[moveCount - 1]) {
+        if (check === 'w') {
+          clearInterval(movingUp);
+        } else if (check === 'a') {
+          clearInterval(movingLeft);
+        } else if (check === 's') {
+          clearInterval(movingDown);
+        } else if (check === 'd'){
+          clearInterval(movingRight);
+        }
       }
+      
       
     }
   }
@@ -35,28 +39,28 @@ const handleUserInput = (key) => {
       movingUp = setInterval(() => {
         connection.write('Move: up');
         stopInterval();
-      }, 300);
+      }, 400);
     } else if (key === '\u0061') {
       keyLogs.push(key);
       moveCount ++;
       movingLeft = setInterval(() => {
         connection.write('Move: left');
         stopInterval();
-      }, 300);
+      }, 400);
     } else if (key === '\u0073') {
       keyLogs.push(key);
       moveCount ++;
       movingDown = setInterval(() => {
         connection.write('Move: down');
         stopInterval();
-      }, 300);
+      }, 400);
     } else if (key === '\u0064') {
       keyLogs.push(key);
       moveCount ++;
       movingRight = setInterval(() => {
         connection.write('Move: right');
         stopInterval();
-      }, 300);
+      }, 400);
     } else if (key === '\u0068') {
       connection.write(`Say: ${cannedMessage[0]}`);
     } else if (key === '\u007a') {
@@ -66,7 +70,7 @@ const handleUserInput = (key) => {
     } else if (key === '\u0062') {
       connection.write(`Say: ${cannedMessage[3]}`);
     }
-  }
+  } console.log(keyLogs);
 
   
 };
