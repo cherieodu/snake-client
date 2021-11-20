@@ -11,6 +11,7 @@ const handleUserInput = (key) => {
   let movingDown;
   let movingRight;
 
+  //function to stop setIntervals set for the user inputs.
   const stopInterval = () => {
     if (keyLogs.length > 1) {
       let check = keyLogs[moveCount - 2];
@@ -21,15 +22,16 @@ const handleUserInput = (key) => {
           clearInterval(movingLeft);
         } else if (check === 's') {
           clearInterval(movingDown);
-        } else if (check === 'd'){
+        } else if (check === 'd') {
           clearInterval(movingRight);
         }
       }
       
       
     }
-  }
+  };
   
+  //handling user inputs.
   if (key === '\u0003') {
     process.exit();
   } else {
@@ -60,7 +62,7 @@ const handleUserInput = (key) => {
       movingRight = setInterval(() => {
         connection.write('Move: right');
         stopInterval();
-      }, 400);
+      }, 400); // we start sending canned messages on the next line.
     } else if (key === '\u0068') {
       connection.write(`Say: ${cannedMessage[0]}`);
     } else if (key === '\u007a') {
@@ -70,13 +72,13 @@ const handleUserInput = (key) => {
     } else if (key === '\u0062') {
       connection.write(`Say: ${cannedMessage[3]}`);
     }
-  } console.log(keyLogs);
+  }
 
   
 };
 
 
-const setupInput = function (conn) {
+const setupInput = function(conn) {
 
 
   connection = conn;
